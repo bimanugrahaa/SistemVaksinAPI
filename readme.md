@@ -1,3 +1,3 @@
 #Testing Dokumentasi Dulu
 
-Masih harus membetulkan GORM 
+Masih harus membetulkan GORM ss
