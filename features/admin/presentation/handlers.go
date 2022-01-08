@@ -37,3 +37,22 @@ func (ah *AdminHandler) CreateAdmin(c echo.Context) error {
 		"data":    admin_response.FromCore(result),
 	})
 }
+
+func (ah *AdminHandler) Login(c echo.Context) error {
+
+	infoAdmin := admin_request.Admin{}
+
+	c.Bind(&infoAdmin)
+
+	result, err := ah.adminBussiness.Login(admin_request.ToCore(infoAdmin))
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"message": "something went wrong",
+		})
+	}
+
+	return c.JSON(http.StatusAccepted, map[string]interface{}{
+		"message": "success",
+		"data":    admin_response.FromCoreLogin(result),
+	})
+}

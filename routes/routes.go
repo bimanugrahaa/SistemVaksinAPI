@@ -13,6 +13,7 @@ func New() *echo.Echo {
 
 	//Admins
 	e.POST("/admin/register", presenter.AdminPresentation.CreateAdmin)
+	e.POST("/admin/login", presenter.AdminPresentation.Login)
 
 	return e
 }

@@ -22,3 +22,5 @@ require (
 	golang.org/x/sys v0.0.0-20210910150752-751e447fb3d0 // indirect
 	golang.org/x/text v0.3.7 // indirect
 )
+
+require github.com/dgrijalva/jwt-go v3.2.0+incompatible //direct

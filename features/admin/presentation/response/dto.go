@@ -11,9 +11,16 @@ type Admin struct {
 
 func FromCore(core admin.AdminCore) Admin {
 	return Admin{
-		// ID:       req.ID,
+		AdminID:  core.AdminID,
 		Username: core.Username,
-		Password: core.Password,
+		Token:    core.Token,
+	}
+}
+
+func FromCoreLogin(core admin.AdminCore) Admin {
+	return Admin{
+		AdminID:  core.AdminID,
+		Username: core.Username,
 		Token:    core.Token,
 	}
 }

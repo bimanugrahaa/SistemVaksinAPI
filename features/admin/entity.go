@@ -10,10 +10,10 @@ type AdminCore struct {
 
 type Bussiness interface {
 	CreateAdmin(data AdminCore) (resp AdminCore, err error) //Register
-	//Login(data AdminCore) (resp AdminCore, err error)
+	Login(data AdminCore) (resp AdminCore, err error)
 }
 
 type Data interface {
 	InsertAdmin(data AdminCore) (resp AdminCore, err error)
-	//Login(data AdminCore) (resp AdminCore, err error)
+	Login(data AdminCore) (resp AdminCore, err error)
 }
