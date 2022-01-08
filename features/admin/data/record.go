@@ -15,7 +15,7 @@ type Admin struct {
 
 func toCore(a *Admin) admin.AdminCore {
 	return admin.AdminCore{
-		//AdminID:       int(a.AdminID),
+		AdminID:  int(a.ID),
 		Username: a.Username,
 		Password: a.Password,
 		Token:    a.Token,

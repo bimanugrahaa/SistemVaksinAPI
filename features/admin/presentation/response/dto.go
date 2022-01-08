@@ -4,7 +4,7 @@ import "SistemVaksinAPI/features/admin"
 
 type Admin struct {
 	AdminID  int    `json:"id"`
-	Username string `json:"name"`
+	Username string `json:"Username"`
 	Password string `json:"password"`
 	Token    string `json:"token"`
 }

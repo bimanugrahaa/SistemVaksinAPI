@@ -2,13 +2,14 @@ package main
 
 import (
 	"SistemVaksinAPI/config"
+	"SistemVaksinAPI/migrate"
 	"SistemVaksinAPI/routes"
 	//"SistemVaksinasiAPI/routes"
 )
 
 func main() {
 	config.InitDB()
-	//migrate.AutoMigrate()
+	migrate.AutoMigrate()
 
 	e := routes.New()
 
