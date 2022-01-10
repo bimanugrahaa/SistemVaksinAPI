@@ -4,7 +4,6 @@ import (
 	"SistemVaksinAPI/config"
 	"SistemVaksinAPI/migrate"
 	"SistemVaksinAPI/routes"
-	//"SistemVaksinasiAPI/routes"
 )
 
 func main() {
