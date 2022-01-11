@@ -3,7 +3,6 @@ package user
 //buat data
 type UserCore struct {
 	UserID      int
-	Username    string
 	Email       string
 	Namalengkap string
 	NIK         int

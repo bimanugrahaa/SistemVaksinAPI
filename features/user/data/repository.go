@@ -31,7 +31,7 @@ func (ur *mysqlUserRepository) Login(data user.UserCore) (resp user.UserCore, er
 
 	record := fromCore(data)
 
-	if err := ur.Conn.Model(&User{}).Where("username = ? AND password = ?", data.Username, data.Password).First(&record).Error; err != nil {
+	if err := ur.Conn.Model(&User{}).Where("email = ? AND password = ?", data.Email, data.Password).First(&record).Error; err != nil {
 		return user.UserCore{}, err
 	}
 	record.Token, _ = middleware.CreateToken(int(record.ID))

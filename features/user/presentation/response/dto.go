@@ -4,7 +4,6 @@ import "SistemVaksinAPI/features/user"
 
 type User struct {
 	UserID      int    `json:"id"`
-	Username    string `json:"Username"`
 	Password    string `json:"password"`
 	Email       string `json:"email"`
 	Namalengkap string `json:"namalengkap"`
@@ -14,16 +13,16 @@ type User struct {
 
 func FromCore(core user.UserCore) User {
 	return User{
-		UserID:   core.UserID,
-		Username: core.Username,
-		Token:    core.Token,
+		UserID: core.UserID,
+		Email:  core.Email,
+		Token:  core.Token,
 	}
 }
 
 func FromCoreLogin(core user.UserCore) User {
 	return User{
-		UserID:   core.UserID,
-		Username: core.Username,
-		Token:    core.Token,
+		UserID: core.UserID,
+		Email:  core.Email,
+		Token:  core.Token,
 	}
 }

@@ -9,7 +9,6 @@ import (
 type User struct {
 	gorm.Model
 	UserID      int
-	Username    string
 	Email       string
 	Namalengkap string
 	NIK         int
@@ -19,10 +18,12 @@ type User struct {
 
 func toCore(u *User) user.UserCore {
 	return user.UserCore{
-		UserID:   int(u.ID),
-		Username: u.Username,
-		Password: u.Password,
-		Token:    u.Token,
+		UserID:      int(u.ID),
+		Email:       u.Email,
+		Password:    u.Password,
+		Namalengkap: u.Namalengkap,
+		NIK:         u.NIK,
+		Token:       u.Token,
 	}
 }
 
@@ -37,7 +38,9 @@ func toCoreList(resp []User) []user.UserCore {
 
 func fromCore(core user.UserCore) User {
 	return User{
-		Username: core.Username,
-		Password: core.Password,
+		Email:       core.Email,
+		Password:    core.Password,
+		Namalengkap: core.Namalengkap,
+		NIK:         core.NIK,
 	}
 }
