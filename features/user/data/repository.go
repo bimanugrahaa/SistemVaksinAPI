@@ -47,3 +47,13 @@ func (ur *mysqlUserRepository) Login(data user.UserCore) (resp user.UserCore, er
 	fmt.Println(record.Token)
 	return toCore(&record), err
 }
+
+func (ur *mysqlUserRepository) SelectUserEmail(data user.UserCore) (resp user.UserCore, err error) {
+	record := fromCore(data)
+
+	if err := ur.Conn.Model(&User{}).Where("email = ?", data.Email).First(&record).Error; err != nil {
+		return user.UserCore{}, err
+	}
+
+	return toCore(&record), err
+}

@@ -17,6 +17,13 @@ func NewUserBussiness(userData user.Data) user.Bussiness {
 
 func (uu *userUsecase) CreateUser(data user.UserCore) (resp user.UserCore, err error) {
 
+	email, _ := uu.userData.SelectUserEmail(data)
+
+	if email.Email == data.Email {
+		err = errors.New("data is available")
+		return user.UserCore{}, err
+	}
+
 	resp, err = uu.userData.InsertUser(data)
 	if err != nil {
 		return user.UserCore{}, err

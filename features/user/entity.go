@@ -16,6 +16,7 @@ type Bussiness interface {
 }
 
 type Data interface {
+	SelectUserEmail(data UserCore) (resp UserCore, err error)
 	InsertUser(data UserCore) (resp UserCore, err error)
 	Login(data UserCore) (resp UserCore, err error)
 }
