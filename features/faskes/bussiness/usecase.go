@@ -30,3 +30,9 @@ func (fu *faskesUsecase) CreateFaskes(data faskes.FaskesCore) (resp faskes.Faske
 
 	return resp, nil
 }
+
+func (fu *faskesUsecase) GetAllFaskes() (resp []faskes.FaskesCore) {
+	resp = fu.faskesData.SelectAllFaskes()
+
+	return resp
+}

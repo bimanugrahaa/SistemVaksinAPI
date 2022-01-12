@@ -27,6 +27,16 @@ func toCore(f *Faskes) faskes.FaskesCore {
 	}
 }
 
+func toList(resp []Faskes) []faskes.FaskesCore {
+	f := []faskes.FaskesCore{}
+
+	for _, value := range resp {
+		f = append(f, toCore(&value))
+	}
+
+	return f
+}
+
 func fromCore(core faskes.FaskesCore) Faskes {
 	return Faskes{
 		ID:        int(core.ID),

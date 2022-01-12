@@ -38,3 +38,12 @@ func (fh *FaskesHandler) CreateFaskes(c echo.Context) error {
 		"data":    faskes_response.FromCore(result),
 	})
 }
+
+func (fh *FaskesHandler) GetAllFaskes(c echo.Context) error {
+	result := fh.faskesBussiness.GetAllFaskes()
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "Success",
+		"data":    faskes_response.FromCoreSlice(result),
+	})
+}

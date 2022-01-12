@@ -21,3 +21,12 @@ func FromCore(core faskes.FaskesCore) Faskes {
 		Kelurahan: core.Kelurahan,
 	}
 }
+
+func FromCoreSlice(core []faskes.FaskesCore) []Faskes {
+	var faskesArray []Faskes
+	for key := range core {
+		faskesArray = append(faskesArray, FromCore(core[key]))
+	}
+
+	return faskesArray
+}

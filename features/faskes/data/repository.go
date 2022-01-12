@@ -26,3 +26,14 @@ func (dr *mysqlFaskesRepository) InsertFaskes(data faskes.FaskesCore) (resp fask
 
 	return toCore(&record), nil
 }
+
+func (dr *mysqlFaskesRepository) SelectAllFaskes() (resp []faskes.FaskesCore) {
+
+	var record []Faskes
+
+	if err := dr.Conn.Model(&Faskes{}).Find(&record).Error; err != nil {
+		return []faskes.FaskesCore{}
+	}
+
+	return toList(record)
+}

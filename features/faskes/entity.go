@@ -11,10 +11,10 @@ type FaskesCore struct {
 
 type Bussiness interface {
 	CreateFaskes(data FaskesCore) (resp FaskesCore, err error)
-	//GetAllFaskes() (resp []FaskesCore)
+	GetAllFaskes() (resp []FaskesCore)
 }
 
 type Data interface {
 	InsertFaskes(data FaskesCore) (resp FaskesCore, err error)
-	//SelectAllFaskes() (resp []FaskesCore)
+	SelectAllFaskes() (resp []FaskesCore)
 }
