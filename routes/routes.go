@@ -15,8 +15,12 @@ func New() *echo.Echo {
 	e.POST("/admin/register", presenter.AdminPresentation.CreateAdmin)
 	e.POST("/admin/login", presenter.AdminPresentation.Login)
 
+	//User
 	e.POST("/user/register", presenter.UserPresentation.CreateUser)
 	e.POST("/user/login", presenter.UserPresentation.Login)
+
+	//Faskes
+	e.POST("/faskes", presenter.FaskesPresentation.CreateFaskes)
 
 	return e
 }

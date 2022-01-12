@@ -1,0 +1,40 @@
+package presentation
+
+import (
+	"SistemVaksinAPI/features/faskes"
+	"net/http"
+
+	faskes_request "SistemVaksinAPI/features/faskes/presentation/request"
+	faskes_response "SistemVaksinAPI/features/faskes/presentation/response"
+
+	"github.com/labstack/echo/v4"
+)
+
+type FaskesHandler struct {
+	faskesBussiness faskes.Bussiness
+}
+
+func NewFaskesHandler(fbu faskes.Bussiness) *FaskesHandler {
+	return &FaskesHandler{
+		faskesBussiness: fbu,
+	}
+}
+
+func (fh *FaskesHandler) CreateFaskes(c echo.Context) error {
+
+	newFaskes := faskes_request.Faskes{}
+
+	c.Bind(&newFaskes)
+
+	result, err := fh.faskesBussiness.CreateFaskes(faskes_request.ToCore(newFaskes))
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"message": "faskes available",
+		})
+	}
+
+	return c.JSON(http.StatusAccepted, map[string]interface{}{
+		"message": "success",
+		"data":    faskes_response.FromCore(result),
+	})
+}

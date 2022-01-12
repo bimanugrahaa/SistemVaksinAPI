@@ -1,1 +1,28 @@
 package data
+
+import (
+	"SistemVaksinAPI/features/faskes"
+
+	"gorm.io/gorm"
+)
+
+type mysqlFaskesRepository struct {
+	Conn *gorm.DB
+}
+
+func NewFaskesRepository(conn *gorm.DB) faskes.Data {
+	return &mysqlFaskesRepository{
+		Conn: conn,
+	}
+}
+
+func (dr *mysqlFaskesRepository) InsertFaskes(data faskes.FaskesCore) (resp faskes.FaskesCore, err error) {
+
+	record := fromCore(data)
+	if err := dr.Conn.Create(&record).Error; err != nil {
+
+		return faskes.FaskesCore{}, err
+	}
+
+	return toCore(&record), nil
+}
