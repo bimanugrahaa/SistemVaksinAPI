@@ -13,16 +13,18 @@ type User struct {
 
 func FromCore(core user.UserCore) User {
 	return User{
-		UserID: core.UserID,
-		Email:  core.Email,
-		Token:  core.Token,
+		UserID:      core.UserID,
+		Namalengkap: core.Namalengkap,
+		Email:       core.Email,
+		Token:       core.Token,
 	}
 }
 
 func FromCoreLogin(core user.UserCore) User {
 	return User{
-		UserID: core.UserID,
-		Email:  core.Email,
-		Token:  core.Token,
+		UserID:      core.UserID,
+		Namalengkap: core.Namalengkap,
+		Email:       core.Email,
+		Token:       core.Token,
 	}
 }

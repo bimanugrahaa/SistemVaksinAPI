@@ -37,3 +37,13 @@ func (dr *mysqlFaskesRepository) SelectAllFaskes() (resp []faskes.FaskesCore) {
 
 	return toList(record)
 }
+
+func (dr *mysqlFaskesRepository) SelectFaskesByID(ID int) (resp faskes.FaskesCore, err error) {
+	var record Faskes
+
+	if err := dr.Conn.First(&record, ID).Error; err != nil {
+		return faskes.FaskesCore{}, err
+	}
+
+	return toCore(&record), nil
+}

@@ -3,6 +3,7 @@ package presentation
 import (
 	"SistemVaksinAPI/features/faskes"
 	"net/http"
+	"strconv"
 
 	faskes_request "SistemVaksinAPI/features/faskes/presentation/request"
 	faskes_response "SistemVaksinAPI/features/faskes/presentation/response"
@@ -45,5 +46,15 @@ func (fh *FaskesHandler) GetAllFaskes(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "Success",
 		"data":    faskes_response.FromCoreSlice(result),
+	})
+}
+
+func (fh *FaskesHandler) GetFaskesByID(c echo.Context) error {
+	ID, _ := strconv.Atoi(c.Param("ID"))
+
+	result, _ := fh.faskesBussiness.GetFaskesByID(ID)
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "success",
+		"data":    faskes_response.FromCore(result),
 	})
 }

@@ -22,6 +22,11 @@ func New() *echo.Echo {
 	//Faskes
 	e.POST("/faskes", presenter.FaskesPresentation.CreateFaskes)
 	e.GET("/faskes/semua", presenter.FaskesPresentation.GetAllFaskes)
+	e.GET("/faskes/:ID", presenter.FaskesPresentation.GetFaskesByID)
+
+	//Vaksin
+	e.POST("/vaksin", presenter.VaksinPresentation.CreateVaksin)
+	e.GET("/vaksin/:ID", presenter.VaksinPresentation.GetVaksinByID)
 
 	return e
 }
