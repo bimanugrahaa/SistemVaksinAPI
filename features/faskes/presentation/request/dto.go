@@ -9,6 +9,7 @@ type Faskes struct {
 	Nama      string `json:"nama"`
 	Alamat    string `json:"alamat"`
 	Provinsi  string `json:"provinsi"`
+	Kota      string `json:"kota"`
 	Kecamatan string `json:"kecamatan"`
 	Kelurahan string `json:"kelurahan"`
 }
@@ -19,6 +20,7 @@ func ToCore(f Faskes) faskes.FaskesCore {
 		Nama:      f.Nama,
 		Alamat:    f.Alamat,
 		Provinsi:  f.Provinsi,
+		Kota:      f.Kota,
 		Kecamatan: f.Kecamatan,
 		Kelurahan: f.Kelurahan,
 	}

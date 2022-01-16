@@ -12,6 +12,7 @@ type Faskes struct {
 	Nama      string
 	Alamat    string
 	Provinsi  string
+	Kota      string
 	Kecamatan string
 	Kelurahan string
 }
@@ -22,6 +23,7 @@ func toCore(f *Faskes) faskes.FaskesCore {
 		Nama:      f.Nama,
 		Alamat:    f.Alamat,
 		Provinsi:  f.Provinsi,
+		Kota:      f.Kota,
 		Kecamatan: f.Kecamatan,
 		Kelurahan: f.Kelurahan,
 	}
@@ -43,6 +45,7 @@ func fromCore(core faskes.FaskesCore) Faskes {
 		Nama:      core.Nama,
 		Alamat:    core.Alamat,
 		Provinsi:  core.Provinsi,
+		Kota:      core.Kota,
 		Kecamatan: core.Kecamatan,
 		Kelurahan: core.Kelurahan,
 	}

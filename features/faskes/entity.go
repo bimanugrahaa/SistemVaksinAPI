@@ -5,6 +5,7 @@ type FaskesCore struct {
 	Nama      string
 	Alamat    string
 	Provinsi  string
+	Kota      string
 	Kecamatan string
 	Kelurahan string
 }
