@@ -48,3 +48,21 @@ func (vh *VaksinHandler) GetVaksinByID(c echo.Context) error {
 		"data":    vaksin_response.FromCore(result),
 	})
 }
+
+func (vh *VaksinHandler) UpdateVaksinByID(c echo.Context) error {
+	updateVaksinByID := vaksin_request.Vaksin{}
+
+	c.Bind(&updateVaksinByID)
+
+	result, err := vh.vaksinBussiness.UpdateVaksinByID(vaksin_request.ToCore(updateVaksinByID))
+	if err != nil {
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
+			"message": http.StatusUnauthorized,
+		})
+	}
+
+	return c.JSON(http.StatusAccepted, map[string]interface{}{
+		"message": "success",
+		"data":    vaksin_response.FromCore(result),
+	})
+}

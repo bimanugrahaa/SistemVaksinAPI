@@ -10,6 +10,7 @@ type Vaksin struct {
 	Jadwal      string `json:"jadwal"`
 	Waktu       string `json:"waktu"`
 	Stokvaksin  int    `json:"stokvaksin"`
+	FaskesID    int    `json:"faskes_id"`
 }
 
 func ToCore(v Vaksin) vaksin.VaksinCore {
@@ -19,5 +20,6 @@ func ToCore(v Vaksin) vaksin.VaksinCore {
 		Jadwal:      v.Jadwal,
 		Waktu:       v.Waktu,
 		Stokvaksin:  v.Stokvaksin,
+		FaskesID:    v.FaskesID,
 	}
 }

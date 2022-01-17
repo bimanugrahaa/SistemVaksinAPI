@@ -42,12 +42,19 @@ func (fu *faskesUsecase) GetAllFaskes() (resp []faskes.FaskesCore) {
 
 func (fu *faskesUsecase) GetFaskesByID(ID int) (resp faskes.FaskesCore, err error) {
 	resp, err = fu.faskesData.SelectFaskesByID(ID)
-	vaksin, _ := fu.vaksinData.GetVaksinByID(ID)
-	resp.Vaksin.ID = vaksin.ID
-	resp.Vaksin.Jenisvaksin = vaksin.Jenisvaksin
-	resp.Vaksin.Jadwal = vaksin.Jadwal
-	resp.Vaksin.Waktu = vaksin.Waktu
-	resp.Vaksin.Stokvaksin = vaksin.Stokvaksin
+	vaksin, _ := fu.vaksinData.GetVaksinByFaskesID(ID)
+
+	for _, value := range vaksin {
+		resp.Vaksin = append(resp.Vaksin, faskes.VaksinCore{
+			ID:          value.ID,
+			Jenisvaksin: value.Jenisvaksin,
+			Jadwal:      value.Jadwal,
+			Waktu:       value.Waktu,
+			Stokvaksin:  value.Stokvaksin,
+			FaskesID:    value.FaskesID,
+		})
+
+	}
 
 	return
 }

@@ -13,6 +13,7 @@ type Vaksin struct {
 	Jadwal      string
 	Waktu       string
 	Stokvaksin  int
+	FaskesID    int
 }
 
 func toCore(v *Vaksin) vaksin.VaksinCore {
@@ -22,6 +23,7 @@ func toCore(v *Vaksin) vaksin.VaksinCore {
 		Jadwal:      v.Jadwal,
 		Waktu:       v.Waktu,
 		Stokvaksin:  v.Stokvaksin,
+		FaskesID:    v.FaskesID,
 	}
 }
 
@@ -32,5 +34,16 @@ func fromCore(core vaksin.VaksinCore) Vaksin {
 		Jadwal:      core.Jadwal,
 		Waktu:       core.Waktu,
 		Stokvaksin:  core.Stokvaksin,
+		FaskesID:    core.FaskesID,
 	}
+}
+
+func toVaksinList(resp []Vaksin) []vaksin.VaksinCore {
+	cc := []vaksin.VaksinCore{}
+
+	for _, value := range resp {
+		cc = append(cc, toCore(&value))
+	}
+
+	return cc
 }
