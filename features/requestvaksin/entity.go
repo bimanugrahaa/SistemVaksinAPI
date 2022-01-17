@@ -1,4 +1,4 @@
-package requestvaksinasi
+package requestvaksin
 
 type RequestvaksinCore struct {
 	ID              int
@@ -13,6 +13,7 @@ type RequestvaksinCore struct {
 	Jam_Kedua       string
 	Tanggal_pertama string
 	Tanggal_kedua   string
+	Faskes          string
 	Provinsi        string
 	Kota            string
 	Kelurahan       string
