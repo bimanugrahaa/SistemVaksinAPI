@@ -9,7 +9,6 @@ import (
 type Faskes struct {
 	gorm.Model
 	ID        int
-	VaksinID  int
 	Nama      string
 	Alamat    string
 	Provinsi  string
@@ -21,7 +20,6 @@ type Faskes struct {
 func toCore(f *Faskes) faskes.FaskesCore {
 	return faskes.FaskesCore{
 		ID:        int(f.ID),
-		VaksinID:  f.VaksinID,
 		Nama:      f.Nama,
 		Alamat:    f.Alamat,
 		Provinsi:  f.Provinsi,
@@ -44,7 +42,6 @@ func toList(resp []Faskes) []faskes.FaskesCore {
 func fromCore(core faskes.FaskesCore) Faskes {
 	return Faskes{
 		ID:        int(core.ID),
-		VaksinID:  core.VaksinID,
 		Nama:      core.Nama,
 		Alamat:    core.Alamat,
 		Provinsi:  core.Provinsi,

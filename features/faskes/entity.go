@@ -2,8 +2,7 @@ package faskes
 
 type FaskesCore struct {
 	ID        int
-	VaksinID  int
-	Vaksin    VaksinCore
+	Vaksin    []VaksinCore
 	Nama      string
 	Alamat    string
 	Provinsi  string
@@ -18,6 +17,7 @@ type VaksinCore struct {
 	Jadwal      string
 	Waktu       string
 	Stokvaksin  int
+	FaskesID    int
 }
 
 type Bussiness interface {

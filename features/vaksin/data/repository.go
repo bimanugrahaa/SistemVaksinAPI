@@ -36,3 +36,24 @@ func (vr *mysqlVaksinRepository) SelectVaksinByID(ID int) (resp vaksin.VaksinCor
 
 	return toCore(&record), nil
 }
+
+func (vr *mysqlVaksinRepository) SelectVaksinByFaskesID(id int) (resp []vaksin.VaksinCore, err error) {
+
+	var record []Vaksin
+
+	if err := vr.Conn.Model(&Vaksin{}).Where("faskes_id = ?", id).Find(&record).Error; err != nil {
+		return []vaksin.VaksinCore{}, err
+	}
+
+	return toVaksinList(record), nil
+}
+
+func (vr *mysqlVaksinRepository) EditVaksinByID(data vaksin.VaksinCore) (resp vaksin.VaksinCore, err error) {
+	record := fromCore(data)
+
+	if err := vr.Conn.Model(&Vaksin{}).Where("id = ?", data.ID).Updates(&record).Error; err != nil {
+		return vaksin.VaksinCore{}, err
+	}
+
+	return toCore(&record), nil
+}

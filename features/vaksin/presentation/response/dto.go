@@ -8,6 +8,7 @@ type Vaksin struct {
 	Jadwal      string `json:"jadwal"`
 	Waktu       string `json:"waktu"`
 	Stokvaksin  int    `json:"stokvaksin"`
+	FaskesID    int    `json:"faskes_id"`
 }
 
 func FromCore(core vaksin.VaksinCore) Vaksin {
@@ -17,5 +18,6 @@ func FromCore(core vaksin.VaksinCore) Vaksin {
 		Jadwal:      core.Jadwal,
 		Waktu:       core.Waktu,
 		Stokvaksin:  core.Stokvaksin,
+		FaskesID:    core.FaskesID,
 	}
 }

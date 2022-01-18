@@ -13,7 +13,6 @@ type Faskes struct {
 	Kota      string     `json:"kota"`
 	Kecamatan string     `json:"kecamatan"`
 	Kelurahan string     `json:"kelurahan"`
-	VaksinID  int        `json:"vaksin_id"`
 	Vaksin    VaksinDesc `json:"vaksin"`
 }
 
@@ -34,7 +33,7 @@ func ToCore(f Faskes) faskes.FaskesCore {
 		Kota:      f.Kota,
 		Kecamatan: f.Kecamatan,
 		Kelurahan: f.Kelurahan,
-		//Vaksin:    ToVaksinCore(f.Jenisvaksin),
+		//Vaksin:    ToVaksinCore(req.Jenisvaksin),
 	}
 }
 
