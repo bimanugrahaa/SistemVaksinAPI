@@ -8,6 +8,9 @@ import (
 	_faskes_bussiness "SistemVaksinAPI/features/faskes/bussiness"
 	_faskes_data "SistemVaksinAPI/features/faskes/data"
 	_faskes_presentation "SistemVaksinAPI/features/faskes/presentation"
+	_requestvaksin_bussiness "SistemVaksinAPI/features/requestvaksin/bussiness"
+	_requestvaksin_data "SistemVaksinAPI/features/requestvaksin/data"
+	_requestvaksin_presentation "SistemVaksinAPI/features/requestvaksin/presentation"
 	_user_bussiness "SistemVaksinAPI/features/user/bussiness"
 	_user_data "SistemVaksinAPI/features/user/data"
 	_user_presentation "SistemVaksinAPI/features/user/presentation"
@@ -17,10 +20,11 @@ import (
 )
 
 type Presenter struct {
-	AdminPresentation  *_admin_presentation.AdminHandler
-	UserPresentation   *_user_presentation.UserHandler
-	FaskesPresentation *_faskes_presentation.FaskesHandler
-	VaksinPresentation *_vaksin_presentation.VaksinHandler
+	AdminPresentation         *_admin_presentation.AdminHandler
+	UserPresentation          *_user_presentation.UserHandler
+	FaskesPresentation        *_faskes_presentation.FaskesHandler
+	VaksinPresentation        *_vaksin_presentation.VaksinHandler
+	RequestvaksinPresentation *_requestvaksin_presentation.RequestvaksinHandler
 }
 
 func Init() Presenter {
@@ -45,10 +49,16 @@ func Init() Presenter {
 	faskesBussiness := _faskes_bussiness.NewFaskesBussiness(faskesData, vaksinBussiness)
 	faskesPresentation := _faskes_presentation.NewFaskesHandler(faskesBussiness)
 
+	//Request Vaksin
+	requestvaksinData := _requestvaksin_data.NewRequestvaksinRepository(config.DB)
+	requestvaksinBussiness := _requestvaksin_bussiness.NewRequestvaksinBussiness(requestvaksinData)
+	requestvaksinPresentation := _requestvaksin_presentation.NewRequestvaksinHandler(requestvaksinBussiness)
+
 	return Presenter{
-		AdminPresentation:  adminPresentation,
-		UserPresentation:   userPresentation,
-		FaskesPresentation: faskesPresentation,
-		VaksinPresentation: vaksinPresentation,
+		AdminPresentation:         adminPresentation,
+		UserPresentation:          userPresentation,
+		FaskesPresentation:        faskesPresentation,
+		VaksinPresentation:        vaksinPresentation,
+		RequestvaksinPresentation: requestvaksinPresentation,
 	}
 }
