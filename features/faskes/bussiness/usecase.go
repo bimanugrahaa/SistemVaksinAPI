@@ -3,6 +3,7 @@ package bussiness
 import (
 	"SistemVaksinAPI/features/faskes"
 	"SistemVaksinAPI/features/vaksin"
+	"errors"
 )
 
 type faskesUsecase struct {
@@ -57,4 +58,15 @@ func (fu *faskesUsecase) GetFaskesByID(ID int) (resp faskes.FaskesCore, err erro
 
 	}
 	return
+}
+
+func (fu *faskesUsecase) GetFaskesByName(data faskes.FaskesCore) (resp faskes.FaskesCore, err error) {
+	resp, err = fu.faskesData.SelectFaskesByName(data)
+
+	if err != nil {
+		err = errors.New("Ada yg ngawur")
+		return faskes.FaskesCore{}, err
+	}
+
+	return resp, nil
 }
