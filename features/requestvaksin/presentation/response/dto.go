@@ -52,3 +52,11 @@ func FromCoreSlice(core []requestvaksin.RequestvaksinCore) []Requestvaksin {
 
 	return requestvaksinArray
 }
+
+func FromCoreLogin(core requestvaksin.RequestvaksinCore) Requestvaksin {
+	return Requestvaksin{
+		ID:   core.ID,
+		Nama: core.Nama,
+		NIK:  core.NIK,
+	}
+}

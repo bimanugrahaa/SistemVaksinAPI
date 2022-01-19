@@ -30,10 +30,12 @@ type Bussiness interface {
 	CreateRequestvaksin(data RequestvaksinCore) (resp RequestvaksinCore, err error)
 	GetAllRequestvaksin() (resp []RequestvaksinCore)
 	GetRequestvaksinByID(id int) (resp RequestvaksinCore, err error)
+	Login(data RequestvaksinCore) (resp RequestvaksinCore, err error)
 }
 
 type Data interface {
 	InsertRequestvaksin(data RequestvaksinCore) (resp RequestvaksinCore, err error)
 	SelectAllRequestvaksin() (resp []RequestvaksinCore)
 	SelectRequestvaksinByID(id int) (resp RequestvaksinCore, err error)
+	Login(data RequestvaksinCore) (resp RequestvaksinCore, err error)
 }
