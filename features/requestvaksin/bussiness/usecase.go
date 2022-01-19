@@ -33,5 +33,6 @@ func (ru *requestvaksinUsecase) GetAllRequestvaksin() (resp []requestvaksin.Requ
 
 func (ru *requestvaksinUsecase) GetRequestvaksinByID(ID int) (resp requestvaksin.RequestvaksinCore, err error) {
 	resp, err = ru.requestvaksinData.SelectRequestvaksinByID(ID)
+
 	return
 }

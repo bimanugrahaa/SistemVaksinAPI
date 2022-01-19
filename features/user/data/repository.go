@@ -57,3 +57,24 @@ func (ur *mysqlUserRepository) SelectUserEmail(data user.UserCore) (resp user.Us
 
 	return toCore(&record), err
 }
+
+func (ur *mysqlUserRepository) SelectUserByID(ID int) (resp user.UserCore, err error) {
+	var record User
+
+	if err := ur.Conn.First(&record, ID).Error; err != nil {
+		return user.UserCore{}, err
+	}
+
+	return toCore(&record), nil
+}
+
+func (ur *mysqlUserRepository) EditUser(data user.UserCore) (resp user.UserCore, err error) {
+	record := fromCore(data)
+
+	if err := ur.Conn.Model(&User{}).Where("id = ?", data.UserID).Updates(&record).Error; err != nil {
+		return user.UserCore{}, err
+	}
+
+	return toCore(&record), nil
+
+}

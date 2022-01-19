@@ -20,6 +20,12 @@ type RequestvaksinCore struct {
 	Kecamatan       string
 }
 
+type VaksinCore struct {
+	ID          int
+	Jenisvaksin string
+	FaskesID    int
+}
+
 type Bussiness interface {
 	CreateRequestvaksin(data RequestvaksinCore) (resp RequestvaksinCore, err error)
 	GetAllRequestvaksin() (resp []RequestvaksinCore)
