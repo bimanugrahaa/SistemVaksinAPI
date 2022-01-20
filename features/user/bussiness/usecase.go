@@ -42,3 +42,22 @@ func (uu *userUsecase) Login(data user.UserCore) (resp user.UserCore, err error)
 
 	return resp, nil
 }
+
+func (uu *userUsecase) GetUserByID(ID int) (resp user.UserCore, err error) {
+	resp, err = uu.userData.SelectUserByID(ID)
+	return
+}
+
+func (uu *userUsecase) UpdateUser(data user.UserCore) (resp user.UserCore, err error) {
+
+	userID, _ := uu.userData.SelectUserByID(data.UserID)
+
+	resp, err = uu.userData.EditUser(data)
+	resp.UserID = userID.UserID
+
+	if err != nil {
+		return user.UserCore{}, err
+	}
+
+	return resp, nil
+}

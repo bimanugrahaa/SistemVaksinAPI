@@ -61,3 +61,23 @@ func (fh *FaskesHandler) GetFaskesByID(c echo.Context) error {
 		"data":    faskes_response.FromCore(result),
 	})
 }
+
+func (fh *FaskesHandler) GetFaskesByName(c echo.Context) error {
+	//Name, _ := strconv.Atoi(c.Param("Nama"))
+
+	infoFaskes := faskes_request.Faskes{}
+
+	c.Bind(&infoFaskes)
+
+	result, err := fh.faskesBussiness.GetFaskesByName(faskes_request.ToCore(infoFaskes))
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"message": "Salah Isi Nama",
+		})
+	}
+
+	return c.JSON(http.StatusAccepted, map[string]interface{}{
+		"message": "success",
+		"data":    faskes_response.FromCore(result),
+	})
+}

@@ -66,3 +66,22 @@ func (rh *RequestvaksinHandler) GetRequestvaksinByID(c echo.Context) error {
 		"data":    requestvaksin_response.FromCore(result),
 	})
 }
+
+func (rh *RequestvaksinHandler) Login(c echo.Context) error {
+
+	infoRequestvaksin := requestvaksin_request.Requestvaksin{}
+
+	c.Bind(&infoRequestvaksin)
+
+	result, err := rh.requestvaksinBussiness.Login(requestvaksin_request.ToCore(&infoRequestvaksin))
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"message": "something went wrong",
+		})
+	}
+
+	return c.JSON(http.StatusAccepted, map[string]interface{}{
+		"message": "success",
+		"data":    requestvaksin_response.FromCoreLogin(result),
+	})
+}

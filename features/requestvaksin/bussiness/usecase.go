@@ -4,6 +4,7 @@ import (
 	"SistemVaksinAPI/features/faskes"
 	"SistemVaksinAPI/features/requestvaksin"
 	"SistemVaksinAPI/features/vaksin"
+	"errors"
 )
 
 type requestvaksinUsecase struct {
@@ -146,4 +147,15 @@ func (ru *requestvaksinUsecase) GetRequestvaksinByID(ID int) (resp requestvaksin
 func (ru *requestvaksinUsecase) GetRequestvaksinByUserID(ID int) (resp []requestvaksin.RequestvaksinCore, err error) {
 	resp, err = ru.requestvaksinData.SelectRequestvaksinByUserID(ID)
 	return
+}
+
+func (ru *requestvaksinUsecase) Login(data requestvaksin.RequestvaksinCore) (resp requestvaksin.RequestvaksinCore, err error) {
+	resp, err = ru.requestvaksinData.Login(data)
+
+	if err != nil {
+		err = errors.New("Ada yg ngawur")
+		return requestvaksin.RequestvaksinCore{}, err
+	}
+
+	return resp, nil
 }
