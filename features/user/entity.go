@@ -1,13 +1,43 @@
 package user
 
-//buat data
 type UserCore struct {
-	UserID      int
-	Email       string
-	Namalengkap string
-	NIK         int
-	Password    string
-	Token       string
+	UserID        int
+	Email         string
+	Namalengkap   string
+	NIK           int
+	Password      string
+	Token         string
+	RequestVaksin []RequestvaksinCore
+}
+
+type RequestvaksinCore struct {
+	ID            int
+	Nama          string
+	NIK           int
+	JenisKelamin  string
+	TanggalLahir  string
+	Nomor         string
+	UserID        int
+	VaksinID_satu int
+	Status_satu   string
+	Vaksin_satu   VaksinCore
+	VaksinID_dua  int
+	Status_dua    string
+	Vaksin_dua    VaksinCore
+}
+
+type VaksinCore struct {
+	ID          int
+	Jenisvaksin string
+	Jadwal      string
+	Waktu       string
+	FaskesID    int
+	Faskes      FaskesCore
+}
+
+type FaskesCore struct {
+	ID   int
+	Nama string
 }
 
 type Bussiness interface {

@@ -1,6 +1,5 @@
 package admin
 
-//buat data
 type AdminCore struct {
 	AdminID  int
 	Username string

@@ -48,16 +48,6 @@ func (dr *mysqlFaskesRepository) SelectFaskesByID(ID int) (resp faskes.FaskesCor
 	return toCore(&record), nil
 }
 
-// func (dr *mysqlFaskesRepository) SelectFaskesByName(Nama string) (resp faskes.FaskesCore, err error) {
-// 	var record Faskes
-
-// 	if err := dr.Conn.First(&record, Nama).Error; err != nil {
-// 		return faskes.FaskesCore{}, err
-// 	}
-
-// 	return toCore(&record), nil
-// }
-
 func (dr *mysqlFaskesRepository) SelectFaskesByName(data faskes.FaskesCore) (resp faskes.FaskesCore, err error) {
 
 	record := fromCore(data)
@@ -74,6 +64,5 @@ func (dr *mysqlFaskesRepository) SelectFaskesByName(data faskes.FaskesCore) (res
 		return faskes.FaskesCore{}, err
 	}
 
-	// fmt.Println(record.Token)
 	return toCore(&record), err
 }

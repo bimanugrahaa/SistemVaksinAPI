@@ -67,7 +67,6 @@ func (rr *mysqlRequestvaksinRepository) Login(data requestvaksin.RequestvaksinCo
 	if err := rr.Conn.Model(&Requestvaksin{}).Where("nama = ? AND nik = ?", data.Nama, data.NIK).First(&record).Error; err != nil {
 		return requestvaksin.RequestvaksinCore{}, err
 	}
-	//record.Token, _ = middleware.CreateToken(int(record.ID))
 
 	if err != nil {
 		return requestvaksin.RequestvaksinCore{}, err
@@ -79,4 +78,24 @@ func (rr *mysqlRequestvaksinRepository) Login(data requestvaksin.RequestvaksinCo
 
 	fmt.Println(record)
 	return toCore(&record), err
+}
+
+func (vr *mysqlRequestvaksinRepository) EditRequestVaksinSatu(data requestvaksin.RequestvaksinCore) (resp requestvaksin.RequestvaksinCore, err error) {
+	record := fromCore(data)
+
+	if err := vr.Conn.Model(&Requestvaksin{}).Where("id = ?", data.ID).Updates(&record).Error; err != nil {
+		return requestvaksin.RequestvaksinCore{}, err
+	}
+
+	return toCore(&record), nil
+}
+
+func (vr *mysqlRequestvaksinRepository) EditRequestVaksinDua(data requestvaksin.RequestvaksinCore) (resp requestvaksin.RequestvaksinCore, err error) {
+	record := fromCore(data)
+
+	if err := vr.Conn.Model(&Requestvaksin{}).Where("id = ?", data.ID).Updates(&record).Error; err != nil {
+		return requestvaksin.RequestvaksinCore{}, err
+	}
+
+	return toCore(&record), nil
 }

@@ -21,7 +21,7 @@ func New() *echo.Echo {
 	e.POST("/user/register", presenter.UserPresentation.CreateUser)
 	e.POST("/user/login", presenter.UserPresentation.Login)
 	e.PUT("/user", presenter.UserPresentation.UpdateUser)
-	e.GET("/user", presenter.UserPresentation.GetUserByID)
+	e.GET("/user/:ID", presenter.UserPresentation.GetUserByID)
 
 	//Faskes
 	e.POST("/faskes", presenter.FaskesPresentation.CreateFaskes)
@@ -39,9 +39,8 @@ func New() *echo.Echo {
 	e.GET("/requestvaksin", presenter.RequestvaksinPresentation.GetAllRequestvaksin)
 	e.GET("/requestvaksin/:ID", presenter.RequestvaksinPresentation.GetRequestvaksinByID)
 	e.GET("/requestvaksin/login", presenter.RequestvaksinPresentation.Login)
+	e.PUT("/status/satu", presenter.RequestvaksinPresentation.UpdateRequestVaksinSatu)
+	e.PUT("/status/dua", presenter.RequestvaksinPresentation.UpdateRequestVaksinDua)
 
-	e.POST("/request", presenter.RequestvaksinPresentation.CreateRequestvaksin)
-	e.GET("/request", presenter.RequestvaksinPresentation.GetAllRequestvaksin)
-	e.GET("/request/:ID", presenter.RequestvaksinPresentation.GetRequestvaksinByID)
 	return e
 }

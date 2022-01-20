@@ -63,8 +63,6 @@ func (fh *FaskesHandler) GetFaskesByID(c echo.Context) error {
 }
 
 func (fh *FaskesHandler) GetFaskesByName(c echo.Context) error {
-	//Name, _ := strconv.Atoi(c.Param("Nama"))
-
 	infoFaskes := faskes_request.Faskes{}
 
 	c.Bind(&infoFaskes)

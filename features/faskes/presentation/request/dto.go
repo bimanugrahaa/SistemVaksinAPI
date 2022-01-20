@@ -33,7 +33,6 @@ func ToCore(f Faskes) faskes.FaskesCore {
 		Kota:      f.Kota,
 		Kecamatan: f.Kecamatan,
 		Kelurahan: f.Kelurahan,
-		//Vaksin:    ToVaksinCore(req.Jenisvaksin),
 	}
 }
 

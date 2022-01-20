@@ -35,18 +35,13 @@ type FaskesCore struct {
 	Nama string
 }
 
-type VaksinCore struct {
-	ID          int
-	Jenisvaksin string
-	FaskesID    int
-}
-
 type Bussiness interface {
 	CreateRequestvaksin(data RequestvaksinCore) (resp RequestvaksinCore, err error)
 	GetAllRequestvaksin() (resp []RequestvaksinCore)
 	GetRequestvaksinByID(id int) (resp RequestvaksinCore, err error)
 	GetRequestvaksinByUserID(id int) (resp []RequestvaksinCore, err error)
-	// UpdateRequestVaksinSatuByID(data RequestvaksinCore) (resp RequestvaksinCore, err error)
+	UpdateRequestVaksinSatu(data RequestvaksinCore) (resp RequestvaksinCore, err error)
+	UpdateRequestVaksinDua(data RequestvaksinCore) (resp RequestvaksinCore, err error)
 	Login(data RequestvaksinCore) (resp RequestvaksinCore, err error)
 }
 
@@ -55,6 +50,7 @@ type Data interface {
 	SelectAllRequestvaksin() (resp []RequestvaksinCore)
 	SelectRequestvaksinByID(id int) (resp RequestvaksinCore, err error)
 	SelectRequestvaksinByUserID(id int) (resp []RequestvaksinCore, err error)
-	// EditRequestVaksinSatuByID(data RequestvaksinCore) (resp RequestvaksinCore, err error)
+	EditRequestVaksinSatu(data RequestvaksinCore) (resp RequestvaksinCore, err error)
+	EditRequestVaksinDua(data RequestvaksinCore) (resp RequestvaksinCore, err error)
 	Login(data RequestvaksinCore) (resp RequestvaksinCore, err error)
 }

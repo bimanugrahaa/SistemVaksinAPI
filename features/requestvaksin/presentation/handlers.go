@@ -73,7 +73,7 @@ func (rh *RequestvaksinHandler) Login(c echo.Context) error {
 
 	c.Bind(&infoRequestvaksin)
 
-	result, err := rh.requestvaksinBussiness.Login(requestvaksin_request.ToCore(&infoRequestvaksin))
+	result, err := rh.requestvaksinBussiness.Login(requestvaksin_request.ToCore(infoRequestvaksin))
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"message": "something went wrong",
@@ -83,5 +83,41 @@ func (rh *RequestvaksinHandler) Login(c echo.Context) error {
 	return c.JSON(http.StatusAccepted, map[string]interface{}{
 		"message": "success",
 		"data":    requestvaksin_response.FromCoreLogin(result),
+	})
+}
+
+func (rh *RequestvaksinHandler) UpdateRequestVaksinSatu(c echo.Context) error {
+	UpdateRequestVaksinSatu := requestvaksin_request.Requestvaksin{}
+
+	c.Bind(&UpdateRequestVaksinSatu)
+
+	result, err := rh.requestvaksinBussiness.UpdateRequestVaksinSatu(requestvaksin_request.ToCore(UpdateRequestVaksinSatu))
+	if err != nil {
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
+			"message": http.StatusUnauthorized,
+		})
+	}
+
+	return c.JSON(http.StatusAccepted, map[string]interface{}{
+		"message": "success",
+		"data":    requestvaksin_response.FromCore(result),
+	})
+}
+
+func (rh *RequestvaksinHandler) UpdateRequestVaksinDua(c echo.Context) error {
+	UpdateRequestVaksinSatu := requestvaksin_request.Requestvaksin{}
+
+	c.Bind(&UpdateRequestVaksinSatu)
+
+	result, err := rh.requestvaksinBussiness.UpdateRequestVaksinDua(requestvaksin_request.ToCore(UpdateRequestVaksinSatu))
+	if err != nil {
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
+			"message": http.StatusUnauthorized,
+		})
+	}
+
+	return c.JSON(http.StatusAccepted, map[string]interface{}{
+		"message": "success",
+		"data":    requestvaksin_response.FromCore(result),
 	})
 }
