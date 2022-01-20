@@ -27,16 +27,6 @@ func (dr *mysqlVaksinRepository) InsertVaksin(data vaksin.VaksinCore) (resp vaks
 	return toCore(&record), nil
 }
 
-func (vr *mysqlVaksinRepository) SelectVaksinByID(ID int) (resp vaksin.VaksinCore, err error) {
-	var record Vaksin
-
-	if err := vr.Conn.First(&record, ID).Error; err != nil {
-		return vaksin.VaksinCore{}, err
-	}
-
-	return toCore(&record), nil
-}
-
 func (vr *mysqlVaksinRepository) SelectVaksinByFaskesID(id int) (resp []vaksin.VaksinCore, err error) {
 
 	var record []Vaksin
@@ -46,6 +36,16 @@ func (vr *mysqlVaksinRepository) SelectVaksinByFaskesID(id int) (resp []vaksin.V
 	}
 
 	return toVaksinList(record), nil
+}
+
+func (vr *mysqlVaksinRepository) SelectVaksinByID(ID int) (resp vaksin.VaksinCore, err error) {
+	var record Vaksin
+
+	if err := vr.Conn.First(&record, ID).Error; err != nil {
+		return vaksin.VaksinCore{}, err
+	}
+
+	return toCore(&record), nil
 }
 
 func (vr *mysqlVaksinRepository) EditVaksinByID(data vaksin.VaksinCore) (resp vaksin.VaksinCore, err error) {

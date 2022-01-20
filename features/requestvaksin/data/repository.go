@@ -19,6 +19,7 @@ func NewRequestvaksinRepository(conn *gorm.DB) requestvaksin.Data {
 
 func (vr *mysqlRequestvaksinRepository) InsertRequestvaksin(data requestvaksin.RequestvaksinCore) (resp requestvaksin.RequestvaksinCore, err error) {
 
+	fmt.Println("data", data)
 	record := fromCore(data)
 	if err := vr.Conn.Create(&record).Error; err != nil {
 
@@ -49,6 +50,16 @@ func (dr *mysqlRequestvaksinRepository) SelectAllRequestvaksin() (resp []request
 	return toList(record)
 }
 
+func (vr *mysqlRequestvaksinRepository) SelectRequestvaksinByUserID(ID int) (resp []requestvaksin.RequestvaksinCore, err error) {
+	var record []Requestvaksin
+
+	if err := vr.Conn.Model(&Requestvaksin{}).Where("user_id = ?", ID).Find(&record).Error; err != nil {
+		return []requestvaksin.RequestvaksinCore{}, err
+	}
+
+	return toList(record), nil
+}
+
 func (rr *mysqlRequestvaksinRepository) Login(data requestvaksin.RequestvaksinCore) (resp requestvaksin.RequestvaksinCore, err error) {
 
 	record := fromCore(data)
@@ -56,7 +67,6 @@ func (rr *mysqlRequestvaksinRepository) Login(data requestvaksin.RequestvaksinCo
 	if err := rr.Conn.Model(&Requestvaksin{}).Where("nama = ? AND nik = ?", data.Nama, data.NIK).First(&record).Error; err != nil {
 		return requestvaksin.RequestvaksinCore{}, err
 	}
-	//record.Token, _ = middleware.CreateToken(int(record.ID))
 
 	if err != nil {
 		return requestvaksin.RequestvaksinCore{}, err
@@ -68,4 +78,24 @@ func (rr *mysqlRequestvaksinRepository) Login(data requestvaksin.RequestvaksinCo
 
 	fmt.Println(record)
 	return toCore(&record), err
+}
+
+func (vr *mysqlRequestvaksinRepository) EditRequestVaksinSatu(data requestvaksin.RequestvaksinCore) (resp requestvaksin.RequestvaksinCore, err error) {
+	record := fromCore(data)
+
+	if err := vr.Conn.Model(&Requestvaksin{}).Where("id = ?", data.ID).Updates(&record).Error; err != nil {
+		return requestvaksin.RequestvaksinCore{}, err
+	}
+
+	return toCore(&record), nil
+}
+
+func (vr *mysqlRequestvaksinRepository) EditRequestVaksinDua(data requestvaksin.RequestvaksinCore) (resp requestvaksin.RequestvaksinCore, err error) {
+	record := fromCore(data)
+
+	if err := vr.Conn.Model(&Requestvaksin{}).Where("id = ?", data.ID).Updates(&record).Error; err != nil {
+		return requestvaksin.RequestvaksinCore{}, err
+	}
+
+	return toCore(&record), nil
 }

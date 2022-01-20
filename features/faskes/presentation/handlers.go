@@ -2,6 +2,7 @@ package presentation
 
 import (
 	"SistemVaksinAPI/features/faskes"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -26,6 +27,8 @@ func (fh *FaskesHandler) CreateFaskes(c echo.Context) error {
 	newFaskes := faskes_request.Faskes{}
 
 	c.Bind(&newFaskes)
+
+	fmt.Println(newFaskes)
 
 	result, err := fh.faskesBussiness.CreateFaskes(faskes_request.ToCore(newFaskes))
 	if err != nil {
@@ -60,8 +63,6 @@ func (fh *FaskesHandler) GetFaskesByID(c echo.Context) error {
 }
 
 func (fh *FaskesHandler) GetFaskesByName(c echo.Context) error {
-	//Name, _ := strconv.Atoi(c.Param("Nama"))
-
 	infoFaskes := faskes_request.Faskes{}
 
 	c.Bind(&infoFaskes)

@@ -4,13 +4,14 @@ import (
 	"SistemVaksinAPI/factory"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func New() *echo.Echo {
 
 	presenter := factory.Init()
 	e := echo.New()
-	//e.Use(middleware.CORS())
+	e.Use(middleware.CORS())
 
 	//Admins
 	e.POST("/admin/register", presenter.AdminPresentation.CreateAdmin)
@@ -20,7 +21,7 @@ func New() *echo.Echo {
 	e.POST("/user/register", presenter.UserPresentation.CreateUser)
 	e.POST("/user/login", presenter.UserPresentation.Login)
 	e.PUT("/user", presenter.UserPresentation.UpdateUser)
-	e.GET("/user", presenter.UserPresentation.GetUserByID)
+	e.GET("/user/:ID", presenter.UserPresentation.GetUserByID)
 
 	//Faskes
 	e.POST("/faskes", presenter.FaskesPresentation.CreateFaskes)
@@ -38,6 +39,8 @@ func New() *echo.Echo {
 	e.GET("/requestvaksin", presenter.RequestvaksinPresentation.GetAllRequestvaksin)
 	e.GET("/requestvaksin/:ID", presenter.RequestvaksinPresentation.GetRequestvaksinByID)
 	e.GET("/requestvaksin/login", presenter.RequestvaksinPresentation.Login)
+	e.PUT("/status/satu", presenter.RequestvaksinPresentation.UpdateRequestVaksinSatu)
+	e.PUT("/status/dua", presenter.RequestvaksinPresentation.UpdateRequestVaksinDua)
 
 	return e
 }

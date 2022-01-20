@@ -19,14 +19,7 @@ func NewFaskesBussiness(faskesData faskes.Data, vaksinData vaksin.Bussiness) fas
 }
 
 func (fu *faskesUsecase) CreateFaskes(data faskes.FaskesCore) (resp faskes.FaskesCore, err error) {
-	// if err := du.validate.Struct(data); err != nil {
-	// 	return donation.Core{}, err
-	// }
-
 	resp, err = fu.faskesData.InsertFaskes(data)
-	// user, _ := fu.userData.GetUserById(resp.AuthorID)
-	// resp.Author.ID = user.ID
-	// resp.Author.Name = user.Name
 
 	if err != nil {
 		return faskes.FaskesCore{}, err
@@ -43,7 +36,6 @@ func (fu *faskesUsecase) GetAllFaskes() (resp []faskes.FaskesCore) {
 
 func (fu *faskesUsecase) GetFaskesByID(ID int) (resp faskes.FaskesCore, err error) {
 	resp, err = fu.faskesData.SelectFaskesByID(ID)
-
 	vaksin, _ := fu.vaksinData.GetVaksinByFaskesID(ID)
 
 	for _, value := range vaksin {
@@ -62,6 +54,20 @@ func (fu *faskesUsecase) GetFaskesByID(ID int) (resp faskes.FaskesCore, err erro
 
 func (fu *faskesUsecase) GetFaskesByName(data faskes.FaskesCore) (resp faskes.FaskesCore, err error) {
 	resp, err = fu.faskesData.SelectFaskesByName(data)
+
+	vaksin, _ := fu.vaksinData.GetVaksinByFaskesID(resp.ID)
+
+	for _, value := range vaksin {
+		resp.Vaksin = append(resp.Vaksin, faskes.VaksinCore{
+			ID:          value.ID,
+			Jenisvaksin: value.Jenisvaksin,
+			Jadwal:      value.Jadwal,
+			Waktu:       value.Waktu,
+			Stokvaksin:  value.Stokvaksin,
+			FaskesID:    value.FaskesID,
+		})
+
+	}
 
 	if err != nil {
 		err = errors.New("Ada yg ngawur")

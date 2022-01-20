@@ -10,7 +10,7 @@ type Admin struct {
 
 func ToCore(req Admin) admin.AdminCore {
 	return admin.AdminCore{
-		// ID:       req.ID,
+		AdminID:  int(req.AdminID),
 		Username: req.Username,
 		Password: req.Password,
 	}

@@ -25,13 +25,13 @@ func (vu *vaksinUsecase) CreateVaksin(data vaksin.VaksinCore) (resp vaksin.Vaksi
 	return resp, nil
 }
 
-func (vu *vaksinUsecase) GetVaksinByID(ID int) (resp vaksin.VaksinCore, err error) {
-	resp, err = vu.vaksinData.SelectVaksinByID(ID)
+func (vu *vaksinUsecase) GetVaksinByFaskesID(id int) (resp []vaksin.VaksinCore, err error) {
+	resp, err = vu.vaksinData.SelectVaksinByFaskesID(id)
 	return
 }
 
-func (vu *vaksinUsecase) GetVaksinByFaskesID(id int) (resp []vaksin.VaksinCore, err error) {
-	resp, err = vu.vaksinData.SelectVaksinByFaskesID(id)
+func (vu *vaksinUsecase) GetVaksinByID(id int) (resp vaksin.VaksinCore, err error) {
+	resp, err = vu.vaksinData.SelectVaksinByID(id)
 	return
 }
 

@@ -34,11 +34,6 @@ func Init() Presenter {
 	adminBussiness := _admin_bussiness.NewAdminBussiness(adminData)
 	adminPresentation := _admin_presentation.NewAdminHandler(adminBussiness)
 
-	//User
-	userData := _user_data.NewUserRepository(config.DB)
-	userBussiness := _user_bussiness.NewUserBussiness(userData)
-	userPresentation := _user_presentation.NewUserHandler(userBussiness)
-
 	//Vaksin
 	vaksinData := _vaksin_data.NewVaksinRepository(config.DB)
 	vaksinBussiness := _vaksin_bussiness.NewVaksinBussiness(vaksinData)
@@ -51,8 +46,13 @@ func Init() Presenter {
 
 	//Request Vaksin
 	requestvaksinData := _requestvaksin_data.NewRequestvaksinRepository(config.DB)
-	requestvaksinBussiness := _requestvaksin_bussiness.NewRequestvaksinBussiness(requestvaksinData)
+	requestvaksinBussiness := _requestvaksin_bussiness.NewRequestvaksinBussiness(requestvaksinData, vaksinBussiness, faskesBussiness)
 	requestvaksinPresentation := _requestvaksin_presentation.NewRequestvaksinHandler(requestvaksinBussiness)
+
+	//User
+	userData := _user_data.NewUserRepository(config.DB)
+	userBussiness := _user_bussiness.NewUserBussiness(userData, vaksinBussiness, faskesBussiness, requestvaksinBussiness)
+	userPresentation := _user_presentation.NewUserHandler(userBussiness)
 
 	return Presenter{
 		AdminPresentation:         adminPresentation,
