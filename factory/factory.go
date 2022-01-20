@@ -51,7 +51,7 @@ func Init() Presenter {
 
 	//Request Vaksin
 	requestvaksinData := _requestvaksin_data.NewRequestvaksinRepository(config.DB)
-	requestvaksinBussiness := _requestvaksin_bussiness.NewRequestvaksinBussiness(requestvaksinData)
+	requestvaksinBussiness := _requestvaksin_bussiness.NewRequestvaksinBussiness(requestvaksinData, vaksinBussiness, faskesBussiness)
 	requestvaksinPresentation := _requestvaksin_presentation.NewRequestvaksinHandler(requestvaksinBussiness)
 
 	return Presenter{

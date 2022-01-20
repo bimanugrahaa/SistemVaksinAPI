@@ -8,66 +8,63 @@ import (
 
 type Requestvaksin struct {
 	gorm.Model
-	ID              int
-	Jenisvaksin     string
-	Dosis_pertama   bool
-	Dosis_kedua     bool
-	Status_satu     string
-	Status_dua      string
-	Nama            string
-	NIK             int
-	Jam_pertama     string
-	Jam_Kedua       string
-	Tanggal_pertama string
-	Tanggal_kedua   string
-	Faskes          string
-	Provinsi        string
-	Kota            string
-	Kelurahan       string
-	Kecamatan       string
+	ID            int
+	Nama          string
+	NIK           int
+	JenisKelamin  string
+	TanggalLahir  string
+	Nomor         string
+	Alamat        string
+	Provinsi      string
+	Kota          string
+	Kecamatan     string
+	Kelurahan     string
+	UserID        int
+	VaksinID_satu int
+	Status_satu   string
+	VaksinID_dua  int
+	Status_dua    string
 }
 
 func toCore(r *Requestvaksin) requestvaksin.RequestvaksinCore {
 	return requestvaksin.RequestvaksinCore{
-		ID:              int(r.ID),
-		Jenisvaksin:     r.Jenisvaksin,
-		Dosis_pertama:   r.Dosis_pertama,
-		Dosis_kedua:     r.Dosis_kedua,
-		Status_satu:     r.Status_satu,
-		Status_dua:      r.Status_dua,
-		Nama:            r.Nama,
-		NIK:             r.NIK,
-		Jam_pertama:     r.Jam_pertama,
-		Jam_Kedua:       r.Jam_Kedua,
-		Tanggal_pertama: r.Tanggal_pertama,
-		Tanggal_kedua:   r.Tanggal_kedua,
-		Faskes:          r.Faskes,
-		Provinsi:        r.Provinsi,
-		Kota:            r.Kota,
-		Kelurahan:       r.Kelurahan,
-		Kecamatan:       r.Kecamatan,
+		ID:            int(r.ID),
+		Nama:          r.Nama,
+		NIK:           r.NIK,
+		JenisKelamin:  r.JenisKelamin,
+		TanggalLahir:  r.TanggalLahir,
+		Nomor:         r.Nomor,
+		Alamat:        r.Alamat,
+		Provinsi:      r.Provinsi,
+		Kota:          r.Kota,
+		Kecamatan:     r.Kecamatan,
+		Kelurahan:     r.Kelurahan,
+		UserID:        r.UserID,
+		VaksinID_satu: r.VaksinID_satu,
+		Status_satu:   r.Status_satu,
+		VaksinID_dua:  r.VaksinID_dua,
+		Status_dua:    r.Status_dua,
 	}
 }
 
 func fromCore(core requestvaksin.RequestvaksinCore) Requestvaksin {
 	return Requestvaksin{
-		ID:              int(core.ID),
-		Jenisvaksin:     core.Jenisvaksin,
-		Dosis_pertama:   core.Dosis_pertama,
-		Dosis_kedua:     core.Dosis_kedua,
-		Status_satu:     core.Status_satu,
-		Status_dua:      core.Status_dua,
-		Nama:            core.Nama,
-		NIK:             core.NIK,
-		Jam_pertama:     core.Jam_pertama,
-		Jam_Kedua:       core.Jam_Kedua,
-		Tanggal_pertama: core.Tanggal_pertama,
-		Tanggal_kedua:   core.Tanggal_kedua,
-		Faskes:          core.Faskes,
-		Provinsi:        core.Provinsi,
-		Kota:            core.Kota,
-		Kelurahan:       core.Kelurahan,
-		Kecamatan:       core.Kecamatan,
+		ID:            int(core.ID),
+		Nama:          core.Nama,
+		NIK:           core.NIK,
+		JenisKelamin:  core.JenisKelamin,
+		TanggalLahir:  core.TanggalLahir,
+		Nomor:         core.Nomor,
+		Alamat:        core.Alamat,
+		Provinsi:      core.Provinsi,
+		Kota:          core.Kota,
+		Kecamatan:     core.Kecamatan,
+		Kelurahan:     core.Kelurahan,
+		UserID:        core.UserID,
+		VaksinID_satu: core.VaksinID_satu,
+		Status_satu:   core.Status_satu,
+		VaksinID_dua:  core.VaksinID_dua,
+		Status_dua:    core.Status_dua,
 	}
 }
 

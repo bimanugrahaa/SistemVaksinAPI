@@ -4,6 +4,7 @@ import (
 	"SistemVaksinAPI/features/requestvaksin"
 	requestvaksin_request "SistemVaksinAPI/features/requestvaksin/presentation/request"
 	requestvaksin_response "SistemVaksinAPI/features/requestvaksin/presentation/response"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -26,7 +27,8 @@ func (rh *RequestvaksinHandler) CreateRequestvaksin(c echo.Context) error {
 
 	c.Bind(&newRequestvaksin)
 
-	result, err := rh.requestvaksinBussiness.CreateRequestvaksin(requestvaksin_request.ToCore(&newRequestvaksin))
+	fmt.Println("newRequestvaksin", newRequestvaksin)
+	result, err := rh.requestvaksinBussiness.CreateRequestvaksin(requestvaksin_request.ToCore(newRequestvaksin))
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"message": "requestvaksin available",
@@ -51,7 +53,14 @@ func (rh *RequestvaksinHandler) GetAllRequestvaksin(c echo.Context) error {
 func (rh *RequestvaksinHandler) GetRequestvaksinByID(c echo.Context) error {
 	ID, _ := strconv.Atoi(c.Param("ID"))
 
-	result, _ := rh.requestvaksinBussiness.GetRequestvaksinByID(ID)
+	result, err := rh.requestvaksinBussiness.GetRequestvaksinByID(ID)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"message": "requestvaksin not available",
+		})
+	}
+
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "success",
 		"data":    requestvaksin_response.FromCore(result),

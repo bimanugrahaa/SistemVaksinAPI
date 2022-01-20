@@ -31,5 +31,8 @@ func New() *echo.Echo {
 	e.GET("/vaksin/:ID", presenter.VaksinPresentation.GetVaksinByID)
 	e.PUT("/vaksin", presenter.VaksinPresentation.UpdateVaksinByID)
 
+	e.POST("/request", presenter.RequestvaksinPresentation.CreateRequestvaksin)
+	e.GET("/request", presenter.RequestvaksinPresentation.GetAllRequestvaksin)
+	e.GET("/request/:ID", presenter.RequestvaksinPresentation.GetRequestvaksinByID)
 	return e
 }
