@@ -72,9 +72,9 @@ func (rr *mysqlRequestvaksinRepository) Login(data requestvaksin.RequestvaksinCo
 		return requestvaksin.RequestvaksinCore{}, err
 	}
 
-	if err := rr.Conn.Model(&Requestvaksin{}).Where("id = ?", data.ID).Updates(&record).Error; err != nil {
-		return requestvaksin.RequestvaksinCore{}, err
-	}
+	// if err := rr.Conn.Model(&Requestvaksin{}).Where("id = ?", data.ID).Updates(&record).Error; err != nil {
+	// 	return requestvaksin.RequestvaksinCore{}, err
+	// }
 
 	fmt.Println(record)
 	return toCore(&record), err

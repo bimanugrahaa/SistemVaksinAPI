@@ -101,6 +101,17 @@ func (uu *userUsecase) GetUserByID(ID int) (resp user.UserCore, err error) {
 	return
 }
 
+func (uu *userUsecase) UpdatePasswordByID(data user.UserCore, newPassword string) (resp user.UserCore, err error) {
+	resp, err = uu.userData.EditPasswordByID(data, newPassword)
+
+	if err != nil {
+		err = errors.New("Password salah")
+		return user.UserCore{}, err
+	}
+
+	return resp, nil
+}
+
 func (uu *userUsecase) UpdateUser(data user.UserCore) (resp user.UserCore, err error) {
 
 	userID, _ := uu.userData.SelectUserByID(data.UserID)

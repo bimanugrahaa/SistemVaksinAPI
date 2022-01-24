@@ -39,6 +39,7 @@ func New() *echo.Echo {
 	e.POST("/user/login", presenter.UserPresentation.Login)
 	auth.PUT("/user", presenter.UserPresentation.UpdateUser)
 	auth.GET("/user/:ID", presenter.UserPresentation.GetUserByID)
+	auth.PUT("/user/newpassword", presenter.UserPresentation.UpdatePasswordByID)
 
 	//Faskes
 	auth.POST("/faskes", presenter.FaskesPresentation.CreateFaskes)
@@ -55,7 +56,7 @@ func New() *echo.Echo {
 	auth.POST("/requestvaksin", presenter.RequestvaksinPresentation.CreateRequestvaksin)
 	e.GET("/requestvaksin", presenter.RequestvaksinPresentation.GetAllRequestvaksin)
 	e.GET("/requestvaksin/:ID", presenter.RequestvaksinPresentation.GetRequestvaksinByID)
-	e.GET("/requestvaksin/login", presenter.RequestvaksinPresentation.Login)
+	e.POST("/requestvaksin/login", presenter.RequestvaksinPresentation.Login)
 	auth.PUT("/status/satu", presenter.RequestvaksinPresentation.UpdateRequestVaksinSatu)
 	auth.PUT("/status/dua", presenter.RequestvaksinPresentation.UpdateRequestVaksinDua)
 

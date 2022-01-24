@@ -56,6 +56,7 @@ func FromCoreLogin(core user.UserCore) User {
 	return User{
 		UserID:      core.UserID,
 		Namalengkap: core.Namalengkap,
+		NIK:         core.NIK,
 		Email:       core.Email,
 		Token:       core.Token,
 	}

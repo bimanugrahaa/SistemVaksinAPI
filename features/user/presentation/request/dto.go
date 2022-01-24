@@ -7,6 +7,7 @@ import (
 type User struct {
 	UserID      int    `json:"id"`
 	Password    string `json:"password"`
+	Newpassword string `json:"newpassword"`
 	Email       string `json:"email"`
 	Namalengkap string `json:"namalengkap"`
 	NIK         int    `json:"nik"`

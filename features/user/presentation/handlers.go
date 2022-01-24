@@ -69,6 +69,25 @@ func (uh *UserHandler) GetUserByID(c echo.Context) error {
 	})
 }
 
+func (uh *UserHandler) UpdatePasswordByID(c echo.Context) error {
+	updateUserByID := user_request.User{}
+
+	c.Bind(&updateUserByID)
+	updatePassword := updateUserByID.Newpassword
+
+	result, err := uh.userBussiness.UpdatePasswordByID(user_request.ToCore(updateUserByID), updatePassword)
+	if err != nil {
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
+			"message": http.StatusUnauthorized,
+		})
+	}
+
+	return c.JSON(http.StatusAccepted, map[string]interface{}{
+		"message": "success",
+		"data":    user_response.FromCore(result),
+	})
+}
+
 func (uh *UserHandler) UpdateUser(c echo.Context) error {
 	updateUserByID := user_request.User{}
 

@@ -68,6 +68,20 @@ func (ur *mysqlUserRepository) SelectUserByID(ID int) (resp user.UserCore, err e
 	return toCore(&record), nil
 }
 
+func (ur *mysqlUserRepository) EditPasswordByID(data user.UserCore, newPassword string) (resp user.UserCore, err error) {
+	var record User
+
+	if err := ur.Conn.Model(&User{}).Where("id = ? AND password = ?", data.UserID, data.Password).First(&record).Error; err != nil {
+		return user.UserCore{}, err
+	}
+
+	if err := ur.Conn.Model(&User{}).Where("id = ?", data.UserID).Update("password", newPassword).Error; err != nil {
+		return user.UserCore{}, err
+	}
+
+	return toCore(&record), nil
+}
+
 func (ur *mysqlUserRepository) EditUser(data user.UserCore) (resp user.UserCore, err error) {
 	record := fromCore(data)
 

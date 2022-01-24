@@ -132,12 +132,45 @@ func (ru *requestvaksinUsecase) GetRequestvaksinByUserID(ID int) (resp []request
 func (ru *requestvaksinUsecase) Login(data requestvaksin.RequestvaksinCore) (resp requestvaksin.RequestvaksinCore, err error) {
 	resp, err = ru.requestvaksinData.Login(data)
 
+	vaksin, _ := ru.vaksinData.GetVaksinByID(resp.VaksinID_satu)
+	vaksinDua, _ := ru.vaksinData.GetVaksinByID(resp.VaksinID_dua)
+	faskes, _ := ru.faskesData.GetFaskesByID(vaksin.FaskesID)
+	faskesDua, _ := ru.faskesData.GetFaskesByID(vaksinDua.FaskesID)
+
 	if err != nil {
-		err = errors.New("Ada yg ngawur")
 		return requestvaksin.RequestvaksinCore{}, err
 	}
 
-	return resp, nil
+	resp.Vaksin_satu = requestvaksin.VaksinCore{
+		ID:          vaksin.ID,
+		Jenisvaksin: vaksin.Jenisvaksin,
+		Jadwal:      vaksin.Jadwal,
+		Waktu:       vaksin.Waktu,
+		FaskesID:    vaksin.FaskesID,
+		Faskes: requestvaksin.FaskesCore{
+			ID:   faskes.ID,
+			Nama: faskes.Nama,
+		},
+	}
+
+	resp.Vaksin_dua = requestvaksin.VaksinCore{
+		ID:          vaksinDua.ID,
+		Jenisvaksin: vaksinDua.Jenisvaksin,
+		Jadwal:      vaksinDua.Jadwal,
+		Waktu:       vaksinDua.Waktu,
+		FaskesID:    vaksinDua.FaskesID,
+		Faskes: requestvaksin.FaskesCore{
+			ID:   faskesDua.ID,
+			Nama: faskesDua.Nama,
+		},
+	}
+
+	if err != nil {
+		err = errors.New("ada yg ngawur")
+		return requestvaksin.RequestvaksinCore{}, err
+	}
+
+	return
 }
 
 func (ru *requestvaksinUsecase) UpdateRequestVaksinSatu(data requestvaksin.RequestvaksinCore) (resp requestvaksin.RequestvaksinCore, err error) {

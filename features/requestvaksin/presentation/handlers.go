@@ -82,7 +82,7 @@ func (rh *RequestvaksinHandler) Login(c echo.Context) error {
 
 	return c.JSON(http.StatusAccepted, map[string]interface{}{
 		"message": "success",
-		"data":    requestvaksin_response.FromCoreLogin(result),
+		"data":    requestvaksin_response.FromCore(result),
 	})
 }
 

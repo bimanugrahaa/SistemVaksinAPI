@@ -44,6 +44,7 @@ type Bussiness interface {
 	CreateUser(data UserCore) (resp UserCore, err error) //Register
 	Login(data UserCore) (resp UserCore, err error)
 	GetUserByID(id int) (resp UserCore, err error)
+	UpdatePasswordByID(data UserCore, newPassword string) (resp UserCore, err error)
 	UpdateUser(data UserCore) (resp UserCore, err error)
 }
 
@@ -52,5 +53,6 @@ type Data interface {
 	InsertUser(data UserCore) (resp UserCore, err error)
 	Login(data UserCore) (resp UserCore, err error)
 	SelectUserByID(id int) (resp UserCore, err error)
+	EditPasswordByID(data UserCore, newPassword string) (resp UserCore, err error)
 	EditUser(data UserCore) (resp UserCore, err error)
 }
