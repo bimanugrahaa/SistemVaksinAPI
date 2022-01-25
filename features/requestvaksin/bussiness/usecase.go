@@ -129,6 +129,11 @@ func (ru *requestvaksinUsecase) GetRequestvaksinByUserID(ID int) (resp []request
 	return
 }
 
+func (ru *requestvaksinUsecase) GetRequestvaksinByVaksinID(ID int) (resp int64, err error) {
+	resp, err = ru.requestvaksinData.SelectRequestvaksinByVaksinID(ID)
+	return
+}
+
 func (ru *requestvaksinUsecase) Login(data requestvaksin.RequestvaksinCore) (resp requestvaksin.RequestvaksinCore, err error) {
 	resp, err = ru.requestvaksinData.Login(data)
 

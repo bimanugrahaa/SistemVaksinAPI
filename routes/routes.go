@@ -57,6 +57,7 @@ func New() *echo.Echo {
 	e.GET("/requestvaksin", presenter.RequestvaksinPresentation.GetAllRequestvaksin)
 	e.GET("/requestvaksin/:ID", presenter.RequestvaksinPresentation.GetRequestvaksinByID)
 	e.POST("/requestvaksin/login", presenter.RequestvaksinPresentation.Login)
+	e.POST("/requestvaksin/kuota/:ID", presenter.RequestvaksinPresentation.GetRequestvaksinByVaksinID)
 	auth.PUT("/status/satu", presenter.RequestvaksinPresentation.UpdateRequestVaksinSatu)
 	auth.PUT("/status/dua", presenter.RequestvaksinPresentation.UpdateRequestVaksinDua)
 

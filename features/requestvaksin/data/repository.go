@@ -60,6 +60,19 @@ func (vr *mysqlRequestvaksinRepository) SelectRequestvaksinByUserID(ID int) (res
 	return toList(record), nil
 }
 
+func (vr *mysqlRequestvaksinRepository) SelectRequestvaksinByVaksinID(id int) (resp int64, err error) {
+	// var record []Requestvaksin
+	var count int64
+
+	fmt.Println("id repo", id)
+	if err := vr.Conn.Model(&Requestvaksin{}).Where("vaksin_id_satu = ?", id).Or("vaksin_id_dua = ?", id).Count(&count).Error; err != nil {
+		return resp, err
+	}
+
+	fmt.Println(count)
+	return count, nil
+}
+
 func (rr *mysqlRequestvaksinRepository) Login(data requestvaksin.RequestvaksinCore) (resp requestvaksin.RequestvaksinCore, err error) {
 
 	record := fromCore(data)

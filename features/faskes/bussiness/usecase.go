@@ -52,26 +52,26 @@ func (fu *faskesUsecase) GetFaskesByID(ID int) (resp faskes.FaskesCore, err erro
 	return
 }
 
-func (fu *faskesUsecase) GetFaskesByName(data faskes.FaskesCore) (resp faskes.FaskesCore, err error) {
+func (fu *faskesUsecase) GetFaskesByName(data faskes.FaskesCore) (resp []faskes.FaskesCore, err error) {
 	resp, err = fu.faskesData.SelectFaskesByName(data)
 
-	vaksin, _ := fu.vaksinData.GetVaksinByFaskesID(resp.ID)
+	// [vaksin, _ := fu.vaksinData.GetVaksinByFaskesID(resp.ID)
 
-	for _, value := range vaksin {
-		resp.Vaksin = append(resp.Vaksin, faskes.VaksinCore{
-			ID:          value.ID,
-			Jenisvaksin: value.Jenisvaksin,
-			Jadwal:      value.Jadwal,
-			Waktu:       value.Waktu,
-			Stokvaksin:  value.Stokvaksin,
-			FaskesID:    value.FaskesID,
-		})
+	// for _, value := range vaksin {
+	// 	resp.Vaksin = append(resp.Vaksin, faskes.VaksinCore{
+	// 		ID:          value.ID,
+	// 		Jenisvaksin: value.Jenisvaksin,
+	// 		Jadwal:      value.Jadwal,
+	// 		Waktu:       value.Waktu,
+	// 		Stokvaksin:  value.Stokvaksin,
+	// 		FaskesID:    value.FaskesID,
+	// 	})
 
-	}
+	// }]
 
 	if err != nil {
 		err = errors.New("Ada yg ngawur")
-		return faskes.FaskesCore{}, err
+		return []faskes.FaskesCore{}, err
 	}
 
 	return resp, nil

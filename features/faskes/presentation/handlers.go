@@ -76,6 +76,6 @@ func (fh *FaskesHandler) GetFaskesByName(c echo.Context) error {
 
 	return c.JSON(http.StatusAccepted, map[string]interface{}{
 		"message": "success",
-		"data":    faskes_response.FromCore(result),
+		"data":    faskes_response.FromCoreSlice(result),
 	})
 }

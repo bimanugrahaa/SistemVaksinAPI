@@ -48,21 +48,17 @@ func (dr *mysqlFaskesRepository) SelectFaskesByID(ID int) (resp faskes.FaskesCor
 	return toCore(&record), nil
 }
 
-func (dr *mysqlFaskesRepository) SelectFaskesByName(data faskes.FaskesCore) (resp faskes.FaskesCore, err error) {
+func (dr *mysqlFaskesRepository) SelectFaskesByName(data faskes.FaskesCore) (resp []faskes.FaskesCore, err error) {
 
-	record := fromCore(data)
+	var record []Faskes
 
-	if err := dr.Conn.Model(&Faskes{}).Where("nama = ?", data.Nama).First(&record).Error; err != nil {
-		return faskes.FaskesCore{}, err
+	if err := dr.Conn.Model(&Faskes{}).Where("nama LIKE ?", "%"+data.Nama+"%").Find(&record).Error; err != nil {
+		return []faskes.FaskesCore{}, err
 	}
 
 	if err != nil {
-		return faskes.FaskesCore{}, err
+		return []faskes.FaskesCore{}, err
 	}
 
-	if err := dr.Conn.Model(&Faskes{}).Where("id = ?", data.ID).Updates(&record).Error; err != nil {
-		return faskes.FaskesCore{}, err
-	}
-
-	return toCore(&record), err
+	return toList(record), err
 }

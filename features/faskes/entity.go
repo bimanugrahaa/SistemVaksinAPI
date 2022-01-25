@@ -24,12 +24,12 @@ type Bussiness interface {
 	CreateFaskes(data FaskesCore) (resp FaskesCore, err error)
 	GetAllFaskes() (resp []FaskesCore)
 	GetFaskesByID(id int) (resp FaskesCore, err error)
-	GetFaskesByName(data FaskesCore) (resp FaskesCore, err error)
+	GetFaskesByName(data FaskesCore) (resp []FaskesCore, err error)
 }
 
 type Data interface {
 	InsertFaskes(data FaskesCore) (resp FaskesCore, err error)
 	SelectAllFaskes() (resp []FaskesCore)
 	SelectFaskesByID(id int) (resp FaskesCore, err error)
-	SelectFaskesByName(data FaskesCore) (resp FaskesCore, err error)
+	SelectFaskesByName(data FaskesCore) (resp []FaskesCore, err error)
 }

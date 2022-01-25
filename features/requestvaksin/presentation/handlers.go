@@ -67,6 +67,27 @@ func (rh *RequestvaksinHandler) GetRequestvaksinByID(c echo.Context) error {
 	})
 }
 
+func (rh *RequestvaksinHandler) GetRequestvaksinByVaksinID(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("ID"))
+	// infoRequestvaksin := requestvaksin_request.Requestvaksin{}
+
+	// c.Bind(&infoRequestvaksin)
+	// id := infoRequestvaksin.ID
+	// fmt.Println("id", id)
+	result, err := rh.requestvaksinBussiness.GetRequestvaksinByVaksinID(id)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"message": "requestvaksin not available",
+		})
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "success",
+		"data":    result,
+	})
+}
+
 func (rh *RequestvaksinHandler) Login(c echo.Context) error {
 
 	infoRequestvaksin := requestvaksin_request.Requestvaksin{}
